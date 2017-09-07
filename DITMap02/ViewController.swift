@@ -47,7 +47,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         maps.selectAnnotation(anno01, animated: true)
         
         //델리게이트 연결
-
+        maps.delegate = self
     }
     
     //pin 딜리게이트
@@ -93,8 +93,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
 
     public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
-        
-        print("test")
         
         //연결
         let vano = view.annotation
