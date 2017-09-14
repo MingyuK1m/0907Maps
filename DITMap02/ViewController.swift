@@ -106,7 +106,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         //ok생성
         ac.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
         
-        //작동
+        //작동 됨
         present(ac, animated: true, completion: nil)
         
     }
