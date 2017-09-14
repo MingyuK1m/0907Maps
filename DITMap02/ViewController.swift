@@ -29,7 +29,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // 지도에 보여주기
         maps.setRegion(region, animated: true)
         
-        // pin(annotaion) 곶기
+        // pin(annotaion) 꽂기
         let anno01 = MKPointAnnotation()
         anno01.coordinate = dits
         anno01.title = "Dit"
