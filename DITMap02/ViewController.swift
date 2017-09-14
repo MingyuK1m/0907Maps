@@ -10,11 +10,15 @@ import MapKit
 import UIKit
 
 class ViewController: UIViewController, MKMapViewDelegate {
-
+    
     @IBOutlet weak var maps: MKMapView!
+    
+    var busG : CLLocationCoordinate2D!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //기본 표현
         
         // dit 35.165767, 129.072561
         let dits : CLLocationCoordinate2D = CLLocationCoordinate2DMake(35.165767, 129.072561)
@@ -29,6 +33,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // 지도에 보여주기
         maps.setRegion(region, animated: true)
         
+        /////////////////////////////////////////
+        
+        
+        //함수 표현
+        zoomToRegion()
+        
+        
+        /////////////////////////////////////////
+        
         // pin(annotaion) 꽂기
         let anno01 = MKPointAnnotation()
         anno01.coordinate = dits
@@ -40,7 +53,12 @@ class ViewController: UIViewController, MKMapViewDelegate {
         anno02.title = "시민공원"
         anno02.subtitle = "포켓몬고"
         
-        let anns = [anno01, anno02]
+        let anno03 = MKPointAnnotation()
+        anno02.coordinate = busG
+        anno02.title = "부산여대"
+        anno02.subtitle = "여대다"
+        
+        let anns = ([anno01, anno02, anno03])
         maps.addAnnotations(anns)
         
         //자동선택
@@ -48,6 +66,12 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         //델리게이트 연결
         maps.delegate = self
+    }
+    
+    func zoomToRegion(){
+        //35.168657, 129.072813 부산여대
+        busG = CLLocationCoordinate2DMake(35.168657, 129.072813)
+        
     }
     
     //pin 딜리게이트
@@ -68,7 +92,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 let img = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                 img.image = UIImage(named: "다운로드.jpeg")
                 anno?.leftCalloutAccessoryView = img
-            } else {
+            } else if annotation.title! == "Dit"{
                 anno?.pinTintColor = UIColor.purple
                 //이미지 넣기
                 let img = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
